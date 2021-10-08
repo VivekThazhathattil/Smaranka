@@ -68,7 +68,7 @@ public class MainFragment extends Fragment {
                 String numDigs = numDigitsText.getText().toString();
                 if(!numDigs.equals("") && numDigs.matches("\\d+(?:\\.\\d+)?")){
                     numDigits = Integer.valueOf(numDigs);
-                    if(numDigits > 20 || numDigits < 0){
+                    if(numDigits > 20 || numDigits <=0){
                         numDigits = 3;
                     }
                 }

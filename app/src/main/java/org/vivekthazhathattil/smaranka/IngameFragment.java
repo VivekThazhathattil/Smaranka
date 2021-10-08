@@ -92,16 +92,19 @@ public class IngameFragment extends Fragment {
         }
             if(incDigits > 0){
                 subString = mTestNumString.substring(digitDisplayIndex, digitDisplayIndex + incDigits);
+                digitDisplayIndex = Math.max(0, digitDisplayIndex + incDigits);
             }
             else{
-                if(-incDigits > digitDisplayIndex){
-                    subString = mTestNumString.substring(0, -incDigits - digitDisplayIndex);
+                if(-2 * incDigits > digitDisplayIndex){
+                    //subString = mTestNumString.substring(0, -incDigits - digitDisplayIndex);
+                    subString = "-";
+                    digitDisplayIndex = 0;
                 }
                 else{
-                    subString = mTestNumString.substring(digitDisplayIndex + incDigits, digitDisplayIndex);
+                    subString = mTestNumString.substring(digitDisplayIndex + 2 * incDigits, digitDisplayIndex + incDigits);
+                    digitDisplayIndex = Math.max(0, digitDisplayIndex + incDigits);
                 }
             }
-            digitDisplayIndex = Math.max(0, digitDisplayIndex + incDigits);
             maxDisplayedCount = Math.max(maxDisplayedCount, digitDisplayIndex);
 
             try{
