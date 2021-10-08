@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void switchToInGameFragment(){
-        ingameFragment = new IngameFragment();
+    public void switchToInGameFragment(int numDigits, int maxNum, double timeLimit){
+        ingameFragment = new IngameFragment(numDigits, maxNum, timeLimit);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
         //fragmentTransaction.addToBackStack(null);

@@ -1,9 +1,12 @@
 package org.vivekthazhathattil.smaranka;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,31 +18,25 @@ import org.w3c.dom.Text;
 
 import java.util.Random;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link IngameFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class IngameFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-
-    // TODO: Rename and change types of parameters
     private String mTestNumString;
     private int nDigitSystem = 3;
     private int digitDisplayIndex = 0;
     private int maxDisplayedCount = 0;
+    private int rightBound = 200;
+
+    private double timeLimit = 1;
     private TextView numDisplayView;
+    private long millisLeft;
+    private float timeDelay = 1;
+    private CountDownTimer timer;
+    private TextView timerView;
 
-    public IngameFragment() {
+    public IngameFragment(int numDigits, int maxNum, double timeLimit) {
+       this.nDigitSystem = numDigits;
+       this.rightBound = maxNum;
+       this.timeLimit = timeLimit;
         createTestString();
-    }
-
-    public static IngameFragment newInstance() {
-        IngameFragment fragment = new IngameFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -61,6 +58,10 @@ public class IngameFragment extends Fragment {
         numDisplayView = getView().findViewById(R.id.random_number_textview);
 
         showSubStringNumber(nDigitSystem);
+        millisLeft = (long)(timeLimit * 60000);
+        timerView = getView().findViewById(R.id.timeLeftView);
+        timer = setupTimer(millisLeft, timeDelay);
+        timer.start();
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +116,7 @@ public class IngameFragment extends Fragment {
     private void createTestString(){
         Random randNum = new Random();
         this.mTestNumString =  "";
-        int leftBound = 0, rightBound = 200, numTotalDigits = 1000;
+        int leftBound = 0, numTotalDigits = 1000;
         for(int i = 0; i < numTotalDigits; i+=3){
            String numString = String.valueOf(leftBound + randNum.nextInt(rightBound - leftBound + 1));
            int numLength = numString.length();
@@ -127,5 +128,24 @@ public class IngameFragment extends Fragment {
            }
            this.mTestNumString += numString;
         }
+    }
+
+    public CountDownTimer setupTimer(long timeLeft, float interval){
+        CountDownTimer timer = new CountDownTimer(timeLeft,(int)(interval*1000) ) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                millisLeft = millisUntilFinished;
+                if(timerView != null){
+                    String timeText = String.valueOf(millisLeft/1000);
+                    timerView.setText(timeText);
+                }
+            }
+
+            @Override
+            public void onFinish() {
+                ((MainActivity)getActivity()).switchToRecallFragment(mTestNumString, maxDisplayedCount);
+            }
+        };
+        return timer;
     }
 }

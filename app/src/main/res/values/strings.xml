@@ -9,4 +9,7 @@
     <string name="recall_button_text">RECALL</string>
     <string name="enter_text">Enter text</string>
     <string name="restart_text">Restart</string>
+    <string name="num_digits_text">Digits per turn</string>
+    <string name="max_num_text">Maximum number</string>
+    <string name="time_limit_text">Time Limit:</string>
 </resources>

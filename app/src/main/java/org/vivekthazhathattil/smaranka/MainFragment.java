@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,15 +30,6 @@ public class MainFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static MainFragment newInstance(String param1, String param2) {
         MainFragment fragment = new MainFragment();
         Bundle args = new Bundle();
@@ -63,11 +55,39 @@ public class MainFragment extends Fragment {
     }
 
     public void onViewCreated(View view, Bundle savedInstanceState){
+        EditText numDigitsText = getView().findViewById(R.id.digits_per_turn_text);
+        EditText maxNumText = getView().findViewById(R.id.maximum_number_edit_text);
+        EditText timeLimitText = getView().findViewById(R.id.time_interval_edit_text);
+
         Button randNumButton = getView().findViewById(R.id.rand_num_start_button);
         randNumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).switchToInGameFragment();
+                int numDigits = 3, maxNum = 200;
+                double timeLimit = 1.0;
+                String numDigs = numDigitsText.getText().toString();
+                if(!numDigs.equals("") && numDigs.matches("\\d+(?:\\.\\d+)?")){
+                    numDigits = Integer.valueOf(numDigs);
+                    if(numDigits > 20 || numDigits < 0){
+                        numDigits = 3;
+                    }
+                }
+                String maxNumStr = maxNumText.getText().toString();
+                if(!maxNumStr.equals("") && maxNumStr.matches("\\d+(?:\\.\\d+)?")){
+                    maxNum = Integer.valueOf(maxNumStr);
+                    if(maxNum > Integer.MAX_VALUE || maxNum < 2){
+                        maxNum = 200;
+                    }
+                }
+
+                String timeStr = timeLimitText.getText().toString();
+                if(!timeStr.equals("") && timeStr.matches("\\d+(?:\\.\\d+)?")){
+                    timeLimit = Double.valueOf(timeStr);
+                    if(timeLimit > Double.MAX_VALUE || maxNum < 0.2){
+                        timeLimit = 1.0;
+                    }
+                }
+                ((MainActivity)getActivity()).switchToInGameFragment(numDigits, maxNum, timeLimit);
             }
         });
     }
