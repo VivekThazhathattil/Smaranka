@@ -3,21 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:background="@color/faint_crimson_red"
     tools:context=".MainFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="20dp"
         android:orientation="vertical">
 
-        <Button
+        <ImageButton
             android:id="@+id/rand_num_start_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/round_button_with_states"
-            android:text="@string/random_number_button_text" />
+            android:contentDescription="Start session"
+            android:foreground="@android:drawable/ic_media_play"
+            android:foregroundGravity="center"
+            android:minWidth="150dp"
+            android:minHeight="150dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,7 +40,7 @@
                 android:minWidth="400dp"
                 android:minHeight="50dp"
                 android:text="@string/num_digits_text"
-                android:textColor="@color/steel_blue"
+                android:textColor="@color/light_crimson_red"
                 android:textSize="20sp" />
 
             <EditText
@@ -46,7 +52,7 @@
                 android:inputType="number"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
-                android:textColor="@color/yale_blue"
+                android:textColor="@color/crimson_red"
                 android:hint="3"
                 android:textSize="20sp" />
 
@@ -65,7 +71,7 @@
                 android:minWidth="400dp"
                 android:minHeight="50dp"
                 android:text="@string/max_num_text"
-                android:textColor="@color/steel_blue"
+                android:textColor="@color/light_crimson_red"
                 android:textSize="20sp" />
 
             <EditText
@@ -78,7 +84,7 @@
                 android:ems="10"
                 android:textSize="20sp"
                 android:hint="200"
-                android:textColor="@color/yale_blue"
+                android:textColor="@color/crimson_red"
                 android:inputType="number" />
         </LinearLayout>
         <LinearLayout
@@ -94,7 +100,7 @@
                 android:minWidth="400dp"
                 android:minHeight="50dp"
                 android:text="@string/time_limit_text"
-                android:textColor="@color/steel_blue"
+                android:textColor="@color/light_crimson_red"
                 android:textSize="20sp" />
 
             <EditText
@@ -106,7 +112,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
-                android:textColor="@color/yale_blue"
+                android:textColor="@color/crimson_red"
                 android:hint="1 (min)"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -125,11 +131,11 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:minWidth="400dp"
-                android:minHeight="50dp"
+                android:minHeight="100dp"
                 android:textStyle="bold"
                 android:text="@string/high_score_text"
-                android:textColor="@color/steel_blue"
-                android:textSize="20sp" />
+                android:textColor="@color/light_crimson_red"
+                android:textSize="40sp" />
         </LinearLayout>
     </LinearLayout>
 

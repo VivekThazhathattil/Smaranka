@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -62,10 +63,10 @@ public class MainFragment extends Fragment {
 
         TextView highScoreText = getView().findViewById(R.id.high_score_view);
         int highScore = PrefConfig.getHighScore(getContext());
-        String highScoreStr = "High Score: " + highScore;
+        String highScoreStr = "High Score:  " + highScore;
         highScoreText.setText(highScoreStr);
 
-        Button randNumButton = getView().findViewById(R.id.rand_num_start_button);
+        ImageButton randNumButton = getView().findViewById(R.id.rand_num_start_button);
         randNumButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
