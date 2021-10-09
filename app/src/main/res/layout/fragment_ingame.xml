@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/faint_crimson_red"
     tools:context=".IngameFragment">
 
     <LinearLayout
@@ -66,7 +65,7 @@
                 android:layout_weight="1"
                 android:text="-" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/recall_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,6 +74,7 @@
                 android:background="@drawable/round_button_with_states"
                 android:minWidth="100dp"
                 android:minHeight="50dp"
+                android:textColor="@color/white"
                 android:text="@string/recall_button_text" />
 
         </LinearLayout>

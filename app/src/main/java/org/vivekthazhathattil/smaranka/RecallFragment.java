@@ -18,15 +18,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 public class RecallFragment extends Fragment {
 
     private String solutionText = "";
     private int maxIdx = 0;
     private int correct = 0;
+    private boolean highScoreWorthy = false;
 
-    public RecallFragment(String soln, int maxIdx) {
+    public RecallFragment(String soln, int maxIdx, boolean highScoreWorthy) {
         this.solutionText = soln;
         this.maxIdx = maxIdx;
+        this.highScoreWorthy = highScoreWorthy;
     }
 
     @Override
@@ -52,19 +56,21 @@ public class RecallFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(statsView.getText() != ""){
-                    int highScore = PrefConfig.getHighScore(getContext());
-                    if(highScore < correct){
-                        PrefConfig.saveHighScore(getContext(), correct);
+                    if(highScoreWorthy){
+                        int highScore = PrefConfig.getHighScore(getContext());
+                        if(highScore < correct){
+                            PrefConfig.saveHighScore(getContext(), correct);
+                        }
                     }
                     statsView.setText("");
                     yourAnswerText.setText("");
-                    ((MainActivity)getActivity()).switchToMainFragment();
+                    ((MainActivity) requireActivity()).switchToMainFragment();
                 }
                 checkCorrectness(yourAnswerText, statsView);
                 yourAnswerText.setFocusable(false);
                 yourAnswerText.setFocusableInTouchMode(false);
                 yourAnswerText.setClickable(false);
-                checkButton.setText("Restart");
+                checkButton.setText(R.string.restart_text);
             }
         });
     }
@@ -88,7 +94,7 @@ public class RecallFragment extends Fragment {
         }
         catch(Exception e){
         }
-        String statText = "Correct: \n" + correct + "/" + total;
+        String statText = "Correct: " + correct + "/" + total;
         stats.setText(statText);
     }
 }

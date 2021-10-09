@@ -77,14 +77,13 @@ public class Players {
     }
 
     public double getRating(String strType){
-        if(strType.equals("thres")){
-            return THRES_RATING;
-        }
-        else if(strType.equals("min")){
-            return MIN_RATING;
-        }
-        else if(strType.equals("max")){
-            return MAX_RATING;
+        switch (strType) {
+            case "thres":
+                return THRES_RATING;
+            case "min":
+                return MIN_RATING;
+            case "max":
+                return MAX_RATING;
         }
         return -1;
     }

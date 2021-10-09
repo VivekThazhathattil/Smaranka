@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="crimson_red">#D83A56</color>
+    <color name="crimson_red_translucent">#AF2F46</color>
+    <color name="light_crimson_red_translucent">#BF4952</color>
     <color name="light_crimson_red">#FF616D</color>
     <color name="faint_crimson_red">#FFEAC9</color>
     <color name="alice_blue">#DBE4EE</color>

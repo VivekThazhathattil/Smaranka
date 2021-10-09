@@ -1,9 +1,7 @@
 package org.vivekthazhathattil.smaranka;
-
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
@@ -14,8 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
+import java.util.Objects;
 import java.util.Random;
 
 public class IngameFragment extends Fragment {
@@ -24,11 +21,11 @@ public class IngameFragment extends Fragment {
     private int digitDisplayIndex = 0;
     private int maxDisplayedCount = 0;
     private int rightBound = 200;
+    private boolean highScoreWorthy = false;
 
     private double timeLimit = 1;
     private TextView numDisplayView;
     private long millisLeft;
-    private float timeDelay = 1;
     private CountDownTimer timer;
     private TextView timerView;
 
@@ -51,15 +48,20 @@ public class IngameFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        ImageButton nextButton = getView().findViewById(R.id.next_button);
-        ImageButton prevButton = getView().findViewById(R.id.prev_button);
-        Button recallButton = getView().findViewById(R.id.recall_button);
-        numDisplayView = getView().findViewById(R.id.random_number_textview);
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        ImageButton nextButton = requireView().findViewById(R.id.next_button);
+        ImageButton prevButton = requireView().findViewById(R.id.prev_button);
+        Button recallButton = requireView().findViewById(R.id.recall_button);
+        numDisplayView = requireView().findViewById(R.id.random_number_textview);
+
+        highScoreWorthy = (timeLimit == MainActivity.DEFAULT_TIME_LIMIT &&
+                rightBound == MainActivity.DEFAULT_RIGHT_BOUND &&
+                nDigitSystem == MainActivity.DEFAULT_MAX_NUM);
 
         showSubStringNumber(nDigitSystem);
         millisLeft = (long)(timeLimit * 60000);
-        timerView = getView().findViewById(R.id.timeLeftView);
+        timerView = requireView().findViewById(R.id.timeLeftView);
+        float timeDelay = 1;
         timer = setupTimer(millisLeft, timeDelay);
         timer.start();
 
@@ -81,7 +83,7 @@ public class IngameFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 timer.cancel();
-                ((MainActivity)getActivity()).switchToRecallFragment(mTestNumString, maxDisplayedCount);
+                ((MainActivity)getActivity()).switchToRecallFragment(mTestNumString, maxDisplayedCount, highScoreWorthy);
             }
         });
     }
@@ -147,7 +149,7 @@ public class IngameFragment extends Fragment {
 
             @Override
             public void onFinish() {
-                ((MainActivity)getActivity()).switchToRecallFragment(mTestNumString, maxDisplayedCount);
+                ((MainActivity)getActivity()).switchToRecallFragment(mTestNumString, maxDisplayedCount, highScoreWorthy);
             }
         };
         return timer;

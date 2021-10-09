@@ -1,6 +1,5 @@
 package org.vivekthazhathattil.smaranka;
 
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
@@ -8,15 +7,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import org.vivekthazhathattil.smaranka.databinding.ActivityMainBinding;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ActivityMainBinding binding;
     private FragmentManager fragmentManager;
     private IngameFragment ingameFragment;
     private RecallFragment recallFragment;
     private MainFragment mainFragment;
+    public static final double DEFAULT_TIME_LIMIT = 1;
+    public static final int DEFAULT_RIGHT_BOUND = 200;
+    public static final int DEFAULT_MAX_NUM = 3;
     private static final int CONTENT_VIEW_ID = 10101010;
 
     @Override
@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
 
         try {
-            this.getSupportActionBar().hide();
+            Objects.requireNonNull(this.getSupportActionBar()).hide();
         }
-        catch (NullPointerException e){
+        catch (NullPointerException ignored){
         }
     }
 
@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void switchToRecallFragment(String solutionText, int maxIdx){
-        recallFragment = new RecallFragment(solutionText, maxIdx);
+    public void switchToRecallFragment(String solutionText, int maxIdx, boolean highScoreWorthy){
+        recallFragment = new RecallFragment(solutionText, maxIdx, highScoreWorthy);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right, R.anim.enter_from_right, R.anim.exit_to_right);
         //fragmentTransaction.addToBackStack(null);
