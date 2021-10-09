@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +60,11 @@ public class MainFragment extends Fragment {
         EditText maxNumText = getView().findViewById(R.id.maximum_number_edit_text);
         EditText timeLimitText = getView().findViewById(R.id.time_interval_edit_text);
 
+        TextView highScoreText = getView().findViewById(R.id.high_score_view);
+        int highScore = PrefConfig.getHighScore(getContext());
+        String highScoreStr = "High Score: " + highScore;
+        highScoreText.setText(highScoreStr);
+
         Button randNumButton = getView().findViewById(R.id.rand_num_start_button);
         randNumButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +73,7 @@ public class MainFragment extends Fragment {
                 double timeLimit = 1.0;
                 String numDigs = numDigitsText.getText().toString();
                 if(!numDigs.equals("") && numDigs.matches("\\d+(?:\\.\\d+)?")){
-                    numDigits = Integer.valueOf(numDigs);
+                    numDigits = Integer.parseInt(numDigs);
                     if(numDigits > 20 || numDigits <=0){
                         numDigits = 3;
                     }

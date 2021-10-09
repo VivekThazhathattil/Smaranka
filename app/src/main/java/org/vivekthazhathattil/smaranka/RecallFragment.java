@@ -22,6 +22,7 @@ public class RecallFragment extends Fragment {
 
     private String solutionText = "";
     private int maxIdx = 0;
+    private int correct = 0;
 
     public RecallFragment(String soln, int maxIdx) {
         this.solutionText = soln;
@@ -51,6 +52,10 @@ public class RecallFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(statsView.getText() != ""){
+                    int highScore = PrefConfig.getHighScore(getContext());
+                    if(highScore < correct){
+                        PrefConfig.saveHighScore(getContext(), correct);
+                    }
                     statsView.setText("");
                     yourAnswerText.setText("");
                     ((MainActivity)getActivity()).switchToMainFragment();
@@ -69,8 +74,8 @@ public class RecallFragment extends Fragment {
         SpannableString ss = new SpannableString(solutionSubStr);
         ForegroundColorSpan fcsRed = new ForegroundColorSpan(Color.rgb(255, 127, 138));
         ss.setSpan(fcsRed, 0, solutionSubStr.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        int correct = 0;
         int total = maxIdx;
+        correct = 0;
         try{
             for(int i = 0; i <= maxIdx && i < ans.length(); ++i){
                 if(ans.charAt(i) == solutionText.charAt(i)){

@@ -12,4 +12,5 @@
     <string name="num_digits_text">Digits per turn</string>
     <string name="max_num_text">Maximum number</string>
     <string name="time_limit_text">Time Limit:</string>
+    <string name="high_score_text">High Score: 0</string>
 </resources>

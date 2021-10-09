@@ -80,6 +80,7 @@ public class IngameFragment extends Fragment {
         recallButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                timer.cancel();
                 ((MainActivity)getActivity()).switchToRecallFragment(mTestNumString, maxDisplayedCount);
             }
         });

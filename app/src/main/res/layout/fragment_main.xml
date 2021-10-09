@@ -23,6 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -33,6 +34,7 @@
                 android:minWidth="400dp"
                 android:minHeight="50dp"
                 android:text="@string/num_digits_text"
+                android:textColor="@color/steel_blue"
                 android:textSize="20sp" />
 
             <EditText
@@ -44,6 +46,8 @@
                 android:inputType="number"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
+                android:textColor="@color/yale_blue"
+                android:hint="3"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -61,6 +65,7 @@
                 android:minWidth="400dp"
                 android:minHeight="50dp"
                 android:text="@string/max_num_text"
+                android:textColor="@color/steel_blue"
                 android:textSize="20sp" />
 
             <EditText
@@ -72,6 +77,8 @@
                 android:minHeight="50dp"
                 android:ems="10"
                 android:textSize="20sp"
+                android:hint="200"
+                android:textColor="@color/yale_blue"
                 android:inputType="number" />
         </LinearLayout>
         <LinearLayout
@@ -87,6 +94,7 @@
                 android:minWidth="400dp"
                 android:minHeight="50dp"
                 android:text="@string/time_limit_text"
+                android:textColor="@color/steel_blue"
                 android:textSize="20sp" />
 
             <EditText
@@ -98,6 +106,29 @@
                 android:inputType="numberDecimal"
                 android:minWidth="50dp"
                 android:minHeight="50dp"
+                android:textColor="@color/yale_blue"
+                android:hint="1 (min)"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/high_score_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:minWidth="400dp"
+                android:minHeight="50dp"
+                android:textStyle="bold"
+                android:text="@string/high_score_text"
+                android:textColor="@color/steel_blue"
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>

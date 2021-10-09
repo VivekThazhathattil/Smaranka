@@ -1,5 +1,6 @@
 package org.vivekthazhathattil.smaranka;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
