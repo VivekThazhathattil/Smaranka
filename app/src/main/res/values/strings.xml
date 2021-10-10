@@ -14,4 +14,11 @@
     <string name="time_limit_text">Time Limit:</string>
     <string name="high_score_text">High Score: 0</string>
     <string name="ans_hint">Type answer here..</string>
+    <string name="random_numbers">Random Numbers</string>
+    <string name="spoken_numbers">Spoken Numbers</string>
+    <string name="speed_cards">Speed Cards</string>
+    <string name="images">Images</string>
+    <string name="words">Words</string>
+    <string name="names">Names</string>
+    <string name="international_names">International Names</string>
 </resources>
